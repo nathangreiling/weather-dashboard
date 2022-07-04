@@ -1,0 +1,59 @@
+header {
+    background-color: rgb(0, 128, 255);
+    color:white;
+    text-align: center;
+    margin-top: 0%;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+
+}
+
+
+.btn {
+    background-color: rgb(0, 166, 255);
+    color:white;
+    padding: .2rem 2rem;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.searchbox {
+    padding: 1.5rem;
+    border-bottom: 5;
+    border-color: black;
+}
+
+.historybtn {
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;
+
+}
+
+.cityinput {
+    width: 100%;
+}
+
+hr {
+    position: relative;
+    top: 0px;
+    border: none;
+    height: 3px;
+    background: rgb(105, 105, 105);
+}
+
+.float {
+    flex: 0 0 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.flex {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
