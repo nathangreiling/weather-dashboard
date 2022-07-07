@@ -34,7 +34,7 @@ header {
 
 }
 
-.cityinput {
+.cityInput {
     width: 100%;
 }
 
@@ -57,7 +57,11 @@ hr {
     float: left;
 }
 
-.citiesbox {
-    padding: 10rem;
-    margin: 2rem;
+.city-box {
+    padding: 3.5rem;
+    margin: 1rem;
+}
+
+.name {
+    padding-bottom: 2rem;
 }

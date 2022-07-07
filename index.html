@@ -16,22 +16,18 @@
         <div class="searchbox col-md-3">
             <h3>Search for a City:</h3>
             <form>
-                <input name="city" id="city" type="text" class="cityinput" autofocus="true"/>
+                <input name="cityInput" id="city" type="text" class="cityInput" autofocus="true"/>
                 <button type="submit" class="btn">Search</button>
             </form>
             <hr>
         </div>
-        <div class="citiesbox card">
-            <div id="cities-container" class="">
-                <p>City</p>
-                <p>city</p>
-
-            </div>
+        <div class="city-box card">
+            <h1 class="name"></h1>
+            <p class="temp"></p>
+            <p class="wind"></p>
+            <p class="humidity"></p>
         </div>
-        <div class="col-md-3">
-            <button class="historybtn">Past</button>
-            <button class="historybtn">Searches</button>
-            <button class="historybtn">Here</button>
+        <div class="history-container col-md-3">
         </div> 
     </main>
     <script src="./assets/js/script.js"></script>
