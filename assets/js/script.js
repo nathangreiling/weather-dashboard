@@ -9,6 +9,7 @@ var temp = document.querySelector('.temp');
 var humid = document.querySelector('.humidity');
 var historyContainer = document.querySelector('.history-container')
 
+
 button.addEventListener('click', function(e){
     e.preventDefault();
     getWeather();
@@ -44,8 +45,32 @@ var storage = function () {
     searches.className = "historybtn"
     searches.innerHTML = history
     historyContainer.appendChild(searches)
-}  
+}
 
 var getForecast = function () {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+input.value+",us&cnt=5&appid=" + key)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+input.value+",us&appid=" + key)
 }
+
+historyContainer.addEventListener("click", getSearch);
+
+function getSearch(event) {
+    var pastSearch = event.target.innerHTML
+    console.log(pastSearch);
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+pastSearch+'&units=imperial&appid=' + key)
+        .then(response => response.json())
+        .then(response => {
+      var tempValue = response.main.temp;
+      var nameValue = response.name +" "+ "(" +today+ ")";
+      var windValue = response.wind.speed;
+      var humidValue = response.main.humidity;
+    
+      city.innerHTML = nameValue;
+      wind.innerHTML = "Wind: "+windValue+" MPH";
+      temp.innerHTML = "Temp: "+tempValue+" °F";
+      humid.innerHTML = "Humidity: "+humidValue+"%";
+      input.value ="";
+    }).catch(function(error) {
+        alert("No city found with that name!")
+    });
+}
+  
