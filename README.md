@@ -39,4 +39,4 @@
 
   ## Additional 
   <img alt="Screenshot of Application" width="200px" src="assets/images/Screenshot (30).png" />
-  - Link to application : [Weather Dashboard](https://nathangreiling.github.io/weather-dashboard/)
+  - Link to application : https://nathangreiling.github.io/weather-dashboard/
