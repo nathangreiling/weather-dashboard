@@ -66,10 +66,17 @@ var getForecast = function () {
         var uvValue = response.current.uvi
         uvi.innerHTML = "UV index: "+uvValue
         if (uvValue < 3) {
+            uvi.classList.remove('yellow')
+            uvi.classList.remove('red')
             uvi.classList.add('green')
         }
-        else {
+        else if (uvValue >3 && uvValue < 6){
+            uvi.classList.remove('red')
             uvi.classList.remove('green')
+            uvi.classList.add('yellow')
+        } else {
+            uvi.classList.remove('green')
+            uvi.classList.remove('yellow')
             uvi.classList.add('red')
         }
 

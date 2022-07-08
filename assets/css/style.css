@@ -70,17 +70,19 @@ hr {
 
 .green {
     background-color: rgb(85, 128, 0);
+    border-radius: .2rem;
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: rgb(203, 203, 6);
 }
 
 .red {
-    background-color: red;
+    background-color: rgb(232, 62, 62);
 }
 
 .uv {
-    width: 12rem;
+    width: 8rem;
+    color:white;
 }
 
