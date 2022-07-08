@@ -27,7 +27,7 @@ header {
 .historybtn {
     padding: 15px;
     margin: 10px 1rem;
-    width: 60%;
+    width: 16rem;
     border-radius: .5rem;
     border-color: lightgrey;
 
@@ -60,13 +60,27 @@ hr {
 .city-box {
     padding: 3.5rem;
     margin: 1rem;
+    border-color: darkgrey;
 }
 
 .name {
     padding-bottom: 2rem;
 }
 
-.forecast {
-    float: right;
-    margin-right: 35%;
+
+.green {
+    background-color: rgb(85, 128, 0);
 }
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.uv {
+    width: 12rem;
+}
+

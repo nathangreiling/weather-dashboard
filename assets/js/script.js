@@ -8,14 +8,14 @@ var wind = document.querySelector('.wind');
 var temp = document.querySelector('.temp');
 var humid = document.querySelector('.humidity');
 var historyContainer = document.querySelector('.history-container')
-
+var uvi = document.querySelector('.uv');
+var weIcon = document.querySelector('.weIcon')
 
 button.addEventListener('click', function(e){
     e.preventDefault();
     getWeather();
     getForecast();
     storage();
-    
 });
 
 var getWeather = function () {
@@ -26,7 +26,16 @@ var getWeather = function () {
       var nameValue = response.name +" "+ "(" +today+ ")";
       var windValue = response.wind.speed;
       var humidValue = response.main.humidity;
-    
+      var icon = response.weather[0].icon;
+      var lat = response.coord.lat
+      var lon = response.coord.lon
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      
+
+      weIcon.setAttribute('src', iconurl)
+      localStorage.setItem('lat', lat)
+      localStorage.setItem('lon', lon)
+
       city.innerHTML = nameValue;
       wind.innerHTML = "Wind: "+windValue+" MPH";
       temp.innerHTML = "Temp: "+tempValue+" °F";
@@ -36,6 +45,7 @@ var getWeather = function () {
         alert("No city found with that name!")
     });
 };
+
 
 var storage = function () {
     localStorage.setItem("cityInput", input.value)
@@ -48,10 +58,26 @@ var storage = function () {
 }
 
 var getForecast = function () {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+input.value+",us&appid=" + key)
+    var lat = localStorage.getItem('lat')
+    var lon = localStorage.getItem('lon')
+    fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=hourly&appid=' + key)
+    .then(response => response.json())
+    .then(response => {
+        var uvValue = response.current.uvi
+        uvi.innerHTML = "UV index: "+uvValue
+        if (uvValue < 3) {
+            uvi.classList.add('green')
+        }
+        else {
+            uvi.classList.remove('green')
+            uvi.classList.add('red')
+        }
+
+    })
 }
 
 historyContainer.addEventListener("click", getSearch);
+
 
 function getSearch(event) {
     var pastSearch = event.target.innerHTML
@@ -59,16 +85,25 @@ function getSearch(event) {
     fetch('https://api.openweathermap.org/data/2.5/weather?q='+pastSearch+'&units=imperial&appid=' + key)
         .then(response => response.json())
         .then(response => {
-      var tempValue = response.main.temp;
-      var nameValue = response.name +" "+ "(" +today+ ")";
-      var windValue = response.wind.speed;
-      var humidValue = response.main.humidity;
-    
-      city.innerHTML = nameValue;
-      wind.innerHTML = "Wind: "+windValue+" MPH";
-      temp.innerHTML = "Temp: "+tempValue+" °F";
-      humid.innerHTML = "Humidity: "+humidValue+"%";
-      input.value ="";
+            var tempValue = response.main.temp;
+            var nameValue = response.name +" "+ "(" +today+ ")";
+            var windValue = response.wind.speed;
+            var humidValue = response.main.humidity;
+            var icon = response.weather[0].icon;
+            var lat = response.coord.lat
+            var lon = response.coord.lon
+            var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+            
+      
+            weIcon.setAttribute('src', iconurl)
+            localStorage.setItem('lat', lat)
+            localStorage.setItem('lon', lon)
+      
+            city.innerHTML = nameValue;
+            wind.innerHTML = "Wind: "+windValue+" MPH";
+            temp.innerHTML = "Temp: "+tempValue+" °F";
+            humid.innerHTML = "Humidity: "+humidValue+"%";
+            input.value ="";
     }).catch(function(error) {
         alert("No city found with that name!")
     });
